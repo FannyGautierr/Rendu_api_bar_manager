@@ -26,19 +26,17 @@ use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
-    // forceEager: false,
-    operations:[
+    forceEager: false,
+    operations: [
         new GetCollection(),
-        new Post(processor:OrderProcessor::class, security: "is_granted('ROLE_WAITER')", securityMessage: 'You are not allowed to create an order'),
-        // new Get(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'You are not allowed to get this user'),
-        new Get(),
-        new Put(),
-        new Patch(processor:OrderProcessor::class, security: "is_granted('ROLE_WAITER') || is_granted('ROLE_BARMAN')", securityMessage: 'You are not allowed to edit this order'),
-        // new Delete(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'You are not allowed to delete this user'),
-        new Delete(),
+        new Post(processor: OrderProcessor::class, security: "is_granted('ROLE_WAITER')", securityMessage: 'You are not allowed to create an order'),
+        new Get(security: "is_granted('ROLE_WAITER') || is_granted('ROLE_BARMAN') || is_granted('ROLE_BOSS')", securityMessage: 'You are not allowed to get this order'),
+        new Put(security: "is_granted('ROLE_WAITER') || is_granted('ROLE_BARMAN')", securityMessage: 'You are not allowed to edit this order'),
+        new Patch(processor: OrderProcessor::class, security: "is_granted('ROLE_WAITER') || is_granted('ROLE_BARMAN')", securityMessage: 'You are not allowed to edit this order'),
+        new Delete(security: "is_granted('ROLE_WAITER') || is_granted('ROLE_BARMAN') || is_granted('ROLE_BOSS')", securityMessage: 'You are not allowed to delete this order'),
     ]
 )]
-#[ApiFilter(DateFilter::class, properties: ['createdAt'=>DateFilter::EXCLUDE_NULL])]
+#[ApiFilter(DateFilter::class, properties: ['createdAt' => DateFilter::EXCLUDE_NULL])]
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
 
@@ -174,5 +172,4 @@ class Order
 
         return $this;
     }
-
 }

@@ -21,8 +21,8 @@ use ApiPlatform\Metadata\Delete;
     operations:[
         new GetCollection(),
         new Post(security: "is_granted('ROLE_BARMAN')", securityMessage: 'You are not allowed to create a drink'),
-        new Get(),
-        new Put(),
+        new Get(security: "is_granted('ROLE_WAITER') || is_granted('ROLE_BARMAN') || is_granted('ROLE_BOSS')", securityMessage: 'You are not allowed to get this order'),
+        new Put(security: "is_granted('ROLE_BARMAN')", securityMessage: 'You are not allowed to edit a drink'),
         new Patch(security: "is_granted('ROLE_BARMAN')", securityMessage: 'You are not allowed to edit a drink'),
         new Delete(security: "is_granted('ROLE_BARMAN')", securityMessage: 'You are not allowed to delete a drink'),
     ],
