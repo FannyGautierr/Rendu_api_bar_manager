@@ -19,7 +19,7 @@ Before you begin, ensure you have met the following requirements:
 
 ```bash
 git clone git@github.com:FannyGautierr/Rendu_api_bar_manager.git
-cd bar-manager
+cd Rendu_api_bar_manager
 ```
 
 ### Install Dependencies
