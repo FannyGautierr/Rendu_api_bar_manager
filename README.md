@@ -1,5 +1,7 @@
 # Bar Manager Project
 
+Made by : Fanny Gautier 
+
 This project is a Bar Management System built using the Symfony framework with API Platform. It allows users to manage orders, drinks, and staff roles such as waiters and barmen.
 
 ## Prerequisites
