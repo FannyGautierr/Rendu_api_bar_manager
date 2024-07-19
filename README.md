@@ -64,10 +64,11 @@ CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
 
 ### Database Setup
 
-Create the database schema:
+Create the database schema & run migrations:
 
 ```bash
 php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
 ```
 ## Running the Application
 
