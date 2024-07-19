@@ -18,7 +18,7 @@ Before you begin, ensure you have met the following requirements:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/bar-manager.git
+git clone git@github.com:FannyGautierr/Rendu_api_bar_manager.git
 cd bar-manager
 ```
 
